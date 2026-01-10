@@ -129,6 +129,13 @@ Battery drain is calculated dynamically per step based on payload weight:
 6. Run the database using `flask run`
 7. Copy the server into Postman to make HTTP requests
 
+---
+## Supplementary file 
+
+### Trial.py
+We used file to help visualize the program in a d20x20 bitmap that can runs in the terminal of VScode. This simplifies the movement and decisions of the drones and entails the steps in the process. This file is not used in the intended/main program and is instead used as a guideline, hence it is a supplementary file.
+
+---
 ## References
 
 [1] Streamlit Inc., Streamlit: Turn data scripts into shareable web apps, 2019. [Online]. Available: https://streamlit.io
