@@ -1,4 +1,4 @@
-# utek2026 - team 2
+# UTEK2026 - Team 2
 # Area 1 - Medical Supply Chain Optimization
 
 **An Autonomous Multi-Agent Drone Delivery System for Hospital Logistics.**
@@ -32,10 +32,10 @@ simulation of an indoor drone fleet. It uses autonomous agents to deliver suppli
 
 | File | Description |
 | :--- | :--- |
-| **`app.py`** | main control, handles the Simulation Loop, streamlit rendering, state management for drones, and drone assignment. |
+| **`app.py`** | The main controller, handles the Simulation Loop, streamlit rendering, state management for drones, and drone assignment. |
 | **`grid.py`** | The map grid, contains the 20x20 floor plan, wall logic, and coordinate targets for rooms (OR, ICU, Maternity, ER, Hub). |
 | **`backend.py`** | Defines the `Drone` class, payload weight calculations, and battery drain logic. |
-| **`logic.py`** |Contains the priority sorting algorithms based on CTAS and Urgency scores. |
+| **`logic.py`** |Contains the **Priority Sorting Algorithms** (Insertion Sort) based on CTAS and Urgency scores. |
 
 ---
 
@@ -97,37 +97,20 @@ https://amgq4spfg5j9e4pnku64v9.streamlit.app/
 
 ## Algorithm Details
 
-### 1. The Priority Algorithm
-We implemented a custom priority queue that weighs patients based on:
+### 1. The Priority Algorithm [8], [9]
+We implemented a custom priority queue that weighs resource allocation based on:
+- **Urgency**: the relative amount of time that the resource is required
+- **CTAS Levels**: the critical care the patient requires
 
 
 ### 2. A* Pathfinding
-The drones use the A* search algorithm to find the shortest path between the **Hub** and the **Target Room**. The heuristic used is the **Manhattan Distance**:
-
+The drones use the A* search algorithm to find the shortest path between the Hub and the Target Room. The heuristic used is the Manhattan Distance.
 
 ### 3. Battery Physics
 Battery drain is calculated dynamically per step based on payload weight:
 * **< 0.5kg:** 1.0x Drain (Base Rate)
 * **2.0 - 5.0kg:** 1.5x Drain
 * **> 15.0kg:** 2.0x Drain
-
----
-
-## Installing the Database
-1. Check python and pip versions
-    `python --version`
-    `pip --version`
-2. Install Flask: `pip install Flask`
-3. Install psycopg2-binary: `pip install psycopg2-binary`
-4. Configure the database: create a new database in PostgreSQL
-5. Update the .env file (make sure it's present within .gitignore)
-    `DB_USER=your_pg_user
-    DB_PASSWORD=your_pg_password
-    DB_HOST=localhost
-    DB_PORT=5432
-    DB_NAME=your_database_name`
-6. Run the database using `flask run`
-7. Copy the server into Postman to make HTTP requests
 
 ---
 ## Supplementary file 
@@ -151,3 +134,7 @@ We used file to help visualize the program in a d20x20 bitmap that can runs in t
 [6] O. Kubat, psycopg2-binary: PostgreSQL adapter for Python, 2020. [Online]. Available: https://www.psycopg.org
 
 [7] M. Bayer, SQLAlchemy: Database toolkit for Python, 2006. [Online]. Available: https://www.sqlalchemy.org
+
+[8] Team Medical Supplies, “A Breakdown of Essential Supplies for Every Hospital,” Teammed.com.au, 16 Aug. 2022. [Online]. Available: https://www.teammed.com.au/a-breakdown-of-essential-supplies-for-every-hospital/?srsltid=AfmBOoo3AcL41IO3aM3k1mjcuaLB8BmMMC1dlin2L3R45RRhYk2qyxBW. [Accessed: 10-Jan-2026]. :contentReference[oaicite:0]{index=0}
+
+[9] R. Regua, “The Comprehensive Guide to Delivering Medical Supplies,” Detrack.com, 2023. [Online]. Available: https://www.detrack.com/blog/delivering-medical-supplies/. [Accessed: 10-Jan-2026]. :contentReference[oaicite:1]{index=1}
