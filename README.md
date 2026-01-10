@@ -41,10 +41,12 @@ simulation of an indoor drone fleet. It uses autonomous agents to deliver suppli
 
 ## How to Run Locally
 
+### Frontend
+
 1.  **Clone the Repository**
     ```bash
-    git clone [https://github.com/your-username/utek-logistics-pro.git](https://github.com/your-username/utek-logistics-pro.git)
-    cd utek-logistics-pro
+    git clone https://github.com/shrutigogna123/utek2026/tree/main
+    cd " the repo you cloned "
     ```
 
 2.  **Install Dependencies**
@@ -59,6 +61,34 @@ simulation of an indoor drone fleet. It uses autonomous agents to deliver suppli
 
 4.  **View Dashboard**
     Open your browser to `http://localhost:8501`.
+
+### Database
+
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/shrutigogna123/utek2026/tree/main
+    cd database
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    pip install Flask, psycopg2-binary, SQLAlchemy
+    ```
+
+3. **Configure the database:** create a new database in PostgreSQL
+
+4. **Update the .env file** (make sure it's present within .gitignore)
+    ```bash
+    DB_USER=your_pg_user
+    DB_PASSWORD=your_pg_password
+    DB_HOST=localhost
+    DB_PORT=5432
+    DB_NAME=your_database_name
+    ```
+
+5. **Run the database*** using `flask run`
+
+6. Copy the server link into Postman to make HTTP requests
 
 ---
 
@@ -95,9 +125,3 @@ Battery drain is calculated dynamically per step based on payload weight:
     DB_NAME=your_database_name`
 6. Run the database using `flask run`
 7. Copy the server into Postman to make HTTP requests
-
-
-## Supplementary file 
-
-### Trial.py
-We used file to help visualize the program in a d20x20 bitmap that can runs in the terminal of VScode. This simplifies the movement and decisions of the drones and entails the steps in the process.
