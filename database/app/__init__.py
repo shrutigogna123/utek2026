@@ -5,9 +5,7 @@ import os
 
 from app.extensions import db  # import db from extensions
 
-# TO UPDATE:
-# from app.models import club, club, externalEvent, internalEvent, student
-from app.models import supply
+from app.models import supply, request, drone, droneDistance, room
 
 def create_app():
     app = Flask(__name__)
@@ -16,7 +14,7 @@ def create_app():
     db.init_app(app)
 
     # Importing models
-    from app.models import supply
+    from app.models import supply, request, drone, droneDistance, room
 
     # Creating tables
     with app.app_context():
@@ -25,6 +23,11 @@ def create_app():
     # Registering blueprint routes - organizes code to define http requests
     from app.routes.supplyRoutes import supply_bp
     app.register_blueprint(supply_bp, url_prefix="/supply")
-    
+    from app.routes.droneRoutes import drone_bp
+    app.register_blueprint(drone_bp, url_prefix="/drone")
+    from app.routes.requestRoutes import request_bp
+    app.register_blueprint(request_bp, url_prefix="/request")
+    from app.routes.roomRoutes import room_bp
+    app.register_blueprint(room_bp, url_prefix="/room")
 
     return app

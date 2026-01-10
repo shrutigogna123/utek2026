@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from app import db
 from app.models.supply import Supply, formatSupply
+from app.models.request import Request as RequestModel, formatRequest
 from sqlalchemy.exc import IntegrityError
 
 
@@ -20,7 +21,15 @@ def createSupply():
     # if not supply:
     #     return {"error": f"Supply with name '{supply_name}' not found."}, 404
     
-    # getting the internal events
+    # getting the supplies
+    requestID = data.get("requests", [])
+    requestList = []
+    for reqID in requestID:
+        req = RequestModel.query.filter(RequestModel.id == reqID).first()
+        if not req:
+            return {"error": f"Request with id '{reqID}' not found."}, 404
+        requestList.append(req)
+
     
     if Supply.query.filter_by(name=data['name']).first():
         return {"error": "Supply with that name already exists."}, 409
@@ -31,7 +40,8 @@ def createSupply():
             name = data['name'],
             description = data['description'],
             weight = data['weight'],
-            quantity = data['quantity']
+            quantity = data['quantity'],
+            requests = requestList
         )
         db.session.add(supply)
         db.session.commit()
@@ -75,5 +85,14 @@ def updateSupply(id):
     supply.weight = data.get('weight', supply.weight)
     supply.quantity = data.get('quantity', supply.quantity)
     
+    # update requests
+    if "requests" in data:
+        updatedRequests = []
+        for reqID in data["requests"]:
+            request = Request.query.filter(Request.id == reqID).first()
+            if not request:
+                return {"error": f"Request '{reqID}' not found for this Supply."}, 404
+            updatedRequests.append(request)
+        supply.requests = updatedRequests
     db.session.commit()
     return {'supply': formatSupply(supply)}

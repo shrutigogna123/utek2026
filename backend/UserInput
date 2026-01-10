@@ -1,54 +1,123 @@
+import time
+
 #Function to input requests
 def InputRequests():
     #Urgency Level
-    urgencyLevel=input("Please enter the urgency level: 1) low (30-60 min); 2) moderate (15-30 min); 3) High (8-15 min); 4) Severe (4-8 min); 5) Life-Critical (0-4 min)")
+    urgencyLevel=input("Please enter the urgency level: 1) low (30-60 min); 2) moderate (15-30 min); 3) High (8-15 min); 4) Severe (4-8 min); 5) Life-Critical (0-4 min) \n")
     running = True
     while running:
         try:
             urgencyLevel = int(urgencyLevel)
             if urgencyLevel >= 1 and urgencyLevel <= 5:
-                print("Input not in range. Please enter an integer from 1 to 5")
-            else:
                 running = False
+            else:
+                
+                print("Input not in range. Please enter an integer from 1 to 5")
         except:
             print("Please enter an integer")
 
     #CTAS Level
-    CTAS_Level = input("Please enter the Canadian Triage and Acuity Scale (CTAS) Level (1 to 5):")
+    CTAS_Level = input("Please enter the Canadian Triage and Acuity Scale (CTAS) Level (1 to 5): \n")
     running = True
     while running:
         try:
             CTAS_Level = int(CTAS_Level)
             if CTAS_Level >= 1 and CTAS_Level <= 5:
-                print("Input not in range. Please enter an integer from 1 to 5")
-            else:
                 running = False
+            else:
+                print("Input not in range. Please enter an integer from 1 to 5")
         except:
             print("Please enter an integer")
 
     #Weight of Supply - In real life, the user would select the required supplies
     #there would be a database of supplies with the corresponding weight
-    supplyWeight = input("Please enter the weight class of the supply: 1) <0.5kg; 2) 0.5-2kg; 3) 2-5kg; 4) 5-15kg; 5) 15-50kg; 6) >50kg")
+    supplyWeight = input("Please enter the weight class corresponding to the total weight of the supply: 1) <0.5kg; 2) 0.5-2kg; 3) 2-5kg; 4) 5-15kg; 5) 15-50kg; 6) >50kg \n")
     while running:
         try:
             supplyWeight = int(supplyWeight)
             if supplyWeight >= 1 and supplyWeight <= 6:
-                print("Input not in range. Please enter an integer from 1 to 6")
-            else:
                 running = False
+                
+            else:
+                print("Input not in range. Please enter an integer from 1 to 6")
         except:
             print("Please enter an integer")
 
     #Location where suppy is needed
-    locationNeeded = input("Please enter the location where the supply is needed (1 to 5):")
+    locationNeeded = input("Please enter the location where the supply is needed: 1)  \n")
     while running:
         try:
             locationNeeded = int(locationNeeded)
             if locationNeeded >= 1 and locationNeeded <= 5:
-                print("Input not in range. Please enter an integer from 1 to 5")
-            else:
                 running = False
+                
+            else:
+                print("Input not in range. Please enter an integer from 1 to 5")
         except:
             print("Please enter an integer")
 
-InputRequests()
+    #Create patient as a dictionary
+    patient = {"urgency": urgencyLevel,
+               "ctas": CTAS_Level,
+               "supply_weight": supplyWeight,
+               "location": locationNeeded,
+               "arrival_time":time.time*()}
+    
+    return patient
+
+#Priority scoring system
+def calculate_priority(patient):
+    #Base priority from CTAS (most important)
+    priority_score = patient["ctas"] * 100
+
+    #Waiting time (in minutes)
+    waiting_time = (time.time() - patient["arrival_time"])/60
+    priority_score += waiting_time
+
+    #Urgency adjustmennt
+    priority_score -= patient["urgency"] * 5
+
+    return priority_score
+
+#Sort the priority
+def prioritize_patients_manual(patient_list):
+    sorted_patients = []
+
+    #Insertion sort
+    for patient in patient_list:
+        if patient["ctas"] == 1:
+            sorted_patients.insert(0, patient)
+            continue
+
+        patient_priority = calculate_priority(patient)
+
+        inserted = False
+
+        #Insertion Sort logic
+        for i in range(len(sorted_patients)):
+            if sorted_patients[i]["ctas"] == 1:
+                continue
+            
+            if patient_priority < calculate_priority(sorted_patients[i]):
+                sorted_patients.insert(i, patient)
+                inserted = True
+                break
+    
+    if not inserted:
+        sorted_patients.append(patient)
+
+    return sorted_patients
+
+def drone_receive_requests():
+    delivery_queue = []
+
+    while True:
+        print("\nNew delivery request received")
+        request = InputRequests()
+
+        insert_request(delivery_queue, request)
+
+        print("\nCurrent Drone Delivery Order: ")
+        for i, r in enumerate(delivery_queue, start = 1):
+            print(f"{i}. CTAS {r['ctas']} | Urgency {r['urgency']} | Location {r['location']}")
+
