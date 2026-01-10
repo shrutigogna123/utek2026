@@ -39,7 +39,10 @@ simulation of an indoor drone fleet. It uses autonomous agents to deliver suppli
 
 ---
 
-## How to Run Locally
+## Deployed on Streamlit, access via browser:
+https://amgq4spfg5j9e4pnku64v9.streamlit.app/
+
+## Run Locally
 
 ### Frontend
 
