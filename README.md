@@ -106,7 +106,7 @@ We implemented a custom priority queue that weighs resource allocation based on:
 ### 2. A* Pathfinding
 The drones use the A* search algorithm to find the shortest path between the Hub and the Target Room. The heuristic used is the Manhattan Distance.
 
-### 3. Battery Physics
+### 3. Battery Drain Algorithm
 Battery drain is calculated dynamically per step based on payload weight:
 * **< 0.5kg:** 1.0x Drain (Base Rate)
 * **2.0 - 5.0kg:** 1.5x Drain
