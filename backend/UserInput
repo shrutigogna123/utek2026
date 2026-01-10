@@ -1,0 +1,54 @@
+#Function to input requests
+def InputRequests():
+    #Urgency Level
+    urgencyLevel=input("Please enter the urgency level: 1) low (30-60 min); 2) moderate (15-30 min); 3) High (8-15 min); 4) Severe (4-8 min); 5) Life-Critical (0-4 min)")
+    running = True
+    while running:
+        try:
+            urgencyLevel = int(urgencyLevel)
+            if urgencyLevel >= 1 and urgencyLevel <= 5:
+                print("Input not in range. Please enter an integer from 1 to 5")
+            else:
+                running = False
+        except:
+            print("Please enter an integer")
+
+    #CTAS Level
+    CTAS_Level = input("Please enter the Canadian Triage and Acuity Scale (CTAS) Level (1 to 5):")
+    running = True
+    while running:
+        try:
+            CTAS_Level = int(CTAS_Level)
+            if CTAS_Level >= 1 and CTAS_Level <= 5:
+                print("Input not in range. Please enter an integer from 1 to 5")
+            else:
+                running = False
+        except:
+            print("Please enter an integer")
+
+    #Weight of Supply - In real life, the user would select the required supplies
+    #there would be a database of supplies with the corresponding weight
+    supplyWeight = input("Please enter the weight class of the supply: 1) <0.5kg; 2) 0.5-2kg; 3) 2-5kg; 4) 5-15kg; 5) 15-50kg; 6) >50kg")
+    while running:
+        try:
+            supplyWeight = int(supplyWeight)
+            if supplyWeight >= 1 and supplyWeight <= 6:
+                print("Input not in range. Please enter an integer from 1 to 6")
+            else:
+                running = False
+        except:
+            print("Please enter an integer")
+
+    #Location where suppy is needed
+    locationNeeded = input("Please enter the location where the supply is needed (1 to 5):")
+    while running:
+        try:
+            locationNeeded = int(locationNeeded)
+            if locationNeeded >= 1 and locationNeeded <= 5:
+                print("Input not in range. Please enter an integer from 1 to 5")
+            else:
+                running = False
+        except:
+            print("Please enter an integer")
+
+InputRequests()
