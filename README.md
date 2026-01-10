@@ -95,3 +95,9 @@ Battery drain is calculated dynamically per step based on payload weight:
     DB_NAME=your_database_name`
 6. Run the database using `flask run`
 7. Copy the server into Postman to make HTTP requests
+
+
+## Supplementary file 
+
+### Trial.py
+We used file to help visualize the program in a d20x20 bitmap that can runs in the terminal of VScode. This simplifies the movement and decisions of the drones and entails the steps in the process.
