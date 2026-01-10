@@ -3,6 +3,7 @@
 
 
 ## Installing the Database
+
 1. Check python and pip versions
     `python --version`
     `pip --version`

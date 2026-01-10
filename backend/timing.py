@@ -5,9 +5,6 @@ GRID_WIDTH = 20
 GRID_HEIGHT = 20
 
 
-# -------------------------
-# Supply Class
-# -------------------------
 class Supply:
     def __init__(self, name, weight_kg):
         self.name = name
@@ -16,26 +13,19 @@ class Supply:
     def __repr__(self):
         return f"{self.name} ({self.weight} kg)"
 
-
-# -------------------------
-# Weight → battery multiplier
-# -------------------------
 def weight_to_multiplier(weight):
     if weight < 0.5:
         return 1.0
     elif weight < 2:
-        return 1.2
-    elif weight < 5:
         return 1.5
-    elif weight < 15:
+    elif weight < 5:
         return 2.0
+    elif weight < 15:
+        return 2.5
     else:
         return None  # too heavy
 
 
-# -------------------------
-# Clock Class
-# -------------------------
 class Clock:
     def __init__(self):
         self.time_elapsed = 0
@@ -46,16 +36,13 @@ class Clock:
 
     def start(self):
         while True:
-            print(f"\n⏱️ Time: {self.time_elapsed}s", flush=True)
+            print(f"\n Time: {self.time_elapsed}s", flush=True)
             for obj in self.subscribers:
                 obj.update()
             self.time_elapsed += 1
             time.sleep(1)
 
 
-# -------------------------
-# Drone Class
-# -------------------------
 class Drone:
     def __init__(self, name):
         self.name = name
@@ -72,23 +59,23 @@ class Drone:
         """Set dynamic destination from user."""
         self.xdestination = x
         self.ydestination = y
-        print(f"📍 {self.name} destination set to ({x}, {y})")
+        print(f" {self.name} destination set to ({x}, {y})")
 
     def load_supply(self, supply_obj):
         """Give the drone a Supply object with weight."""
         mult = weight_to_multiplier(supply_obj.weight)
 
         if mult is None:
-            print(f"❌ {self.name} cannot carry {supply_obj} — too heavy!")
+            print(f" {self.name} cannot carry {supply_obj} — too heavy!")
             return False
 
         self.supply = supply_obj
         self.multiplier = mult
-        print(f"✔️ {self.name} loaded {supply_obj} → drain x{mult}")
+        print(f"{self.name} loaded {supply_obj} → drain x{mult}")
         return True
 
     def unload_supply(self):
-        print(f"📦 {self.name} delivered {self.supply}")
+        print(f" {self.name} delivered {self.supply}")
         self.supply = None
         self.multiplier = 1.0
 
@@ -141,9 +128,6 @@ class Drone:
               f"battery={self.battery:.1f}%, carrying={self.supply}")
 
 
-# -------------------------
-# MAIN PROGRAM
-# -------------------------
 if __name__ == "__main__":
     clock = Clock()
 
