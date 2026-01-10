@@ -32,10 +32,10 @@ simulation of an indoor drone fleet. It uses autonomous agents to deliver suppli
 
 | File | Description |
 | :--- | :--- |
-| **`app.py`** | The main controller, handles the Simulation Loop, streamlit rendering, state management for drones, and drone assignment. |
+| **`app.py`** | main control, handles the Simulation Loop, streamlit rendering, state management for drones, and drone assignment. |
 | **`grid.py`** | The map grid, contains the 20x20 floor plan, wall logic, and coordinate targets for rooms (OR, ICU, Maternity, ER, Hub). |
 | **`backend.py`** | Defines the `Drone` class, payload weight calculations, and battery drain logic. |
-| **`logic.py`** |Contains the **Priority Sorting Algorithms** (Insertion Sort) based on CTAS and Urgency scores. |
+| **`logic.py`** |Contains the priority sorting algorithms based on CTAS and Urgency scores. |
 
 ---
 
