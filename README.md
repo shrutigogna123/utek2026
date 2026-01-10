@@ -125,3 +125,19 @@ Battery drain is calculated dynamically per step based on payload weight:
     DB_NAME=your_database_name`
 6. Run the database using `flask run`
 7. Copy the server into Postman to make HTTP requests
+
+## References
+
+[1] Streamlit Inc., Streamlit: Turn data scripts into shareable web apps, 2019. [Online]. Available: https://streamlit.io
+
+[2] W. McKinney, pandas: Python Data Analysis Library, 2010. [Online]. Available: https://pandas.pydata.org
+
+[3] C. R. Harris, K. J. Millman, S. J. van der Walt, et al., NumPy: Fundamental package for scientific computing in Python, 2020. [Online]. Available: https://numpy.org
+
+[4] Plotly Technologies Inc., Plotly: Collaborative data visualization, 2015. [Online]. Available: https://plotly.com/python
+
+[5] M. Grinberg, Flask: Web development, one drop at a time, 2018. [Online]. Available: https://flask.palletsprojects.com
+
+[6] O. Kubat, psycopg2-binary: PostgreSQL adapter for Python, 2020. [Online]. Available: https://www.psycopg.org
+
+[7] M. Bayer, SQLAlchemy: Database toolkit for Python, 2006. [Online]. Available: https://www.sqlalchemy.org
