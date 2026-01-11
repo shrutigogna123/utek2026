@@ -119,6 +119,19 @@ Battery drain is calculated dynamically per step based on payload weight:
 We used file to help visualize the program in a d20x20 bitmap that can runs in the terminal of VScode. This simplifies the movement and decisions of the drones and entails the steps in the process. This file is not used in the intended/main program and is instead used as a guideline, hence it is a supplementary file.
 
 ---
+## Limitations and Known Issues
+
+### Concurrency in Requests
+- Only tested and developed solution to handle one resource request at a time.
+- In future: will test with multiple users requesting for resources simultaneously, to accurately reflect the hospital environment
+
+### Instantaneous Updates to Database
+- Database schema are not being updated instantaneously
+    - Distances of drones to each room needs to be calculated and updated
+    - Modifying the quantity of a resource after a completed request
+- In future: handle concurrent requests and allow for instantaneous database update
+ 
+---
 ## References
 
 [1] Streamlit Inc., Streamlit: Turn data scripts into shareable web apps, 2019. [Online]. Available: https://streamlit.io
