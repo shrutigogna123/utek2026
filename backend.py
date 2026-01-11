@@ -4,9 +4,6 @@ import time
 GRID_WIDTH = 20
 GRID_HEIGHT = 20
 
-# -------------------------
-# Supply Class
-# -------------------------
 class Supply:
     def __init__(self, name, weight_kg):
         self.name = name
@@ -16,9 +13,6 @@ class Supply:
         return f"{self.name} ({self.weight} kg)"
 
 
-# -------------------------
-# Weight → battery multiplier
-# -------------------------
 def weight_to_multiplier(weight):
     if weight < 0.5:
         return 1.0
@@ -32,9 +26,6 @@ def weight_to_multiplier(weight):
         return None  # too heavy
 
 
-# -------------------------
-# Drone Class
-# -------------------------
 class Drone:
     def __init__(self, name):
         self.name = name
