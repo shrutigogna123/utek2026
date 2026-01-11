@@ -26,6 +26,7 @@ def weight_to_multiplier(weight):
         return None  # too heavy
 
 
+# drone class
 class Drone:
     def __init__(self, name):
         self.name = name
@@ -42,19 +43,19 @@ class Drone:
         """Set dynamic destination from user."""
         self.xdestination = x
         self.ydestination = y
-        # print(f" {self.name} destination set to ({x}, {y})")
+        # print(f"{self.name} destination set to ({x}, {y})")
 
     def load_supply(self, supply_obj):
         """Give the drone a Supply object with weight."""
         mult = weight_to_multiplier(supply_obj.weight)
 
         if mult is None:
-            print(f" {self.name} cannot carry {supply_obj} — too heavy!")
+            print(f"{self.name} cannot carry {supply_obj} — too heavy!")
             return False
 
         self.supply = supply_obj
         self.multiplier = mult
-        print(f" {self.name} loaded {supply_obj} → drain x{mult}")
+        print(f"{self.name} loaded {supply_obj} → drain x{mult}")
         return True
 
     def unload_supply(self):
@@ -87,22 +88,21 @@ class Drone:
         else:
             return
 
-        # Compute new position
+        # compute new position
         new_x = self.xposition + dx
         new_y = self.yposition + dy
 
-        # Inside grid?
+        # inside grid?
         if 0 <= new_x < GRID_WIDTH and 0 <= new_y < GRID_HEIGHT:
             self.xposition = new_x
             self.yposition = new_y
             self.battery -= 0.5 * self.multiplier
 
-        # Check if destination reached (Logic handled by Controller, but kept here for compatibility)
+        # check if destination reached
         if (
             self.xdestination is not None and
             self.ydestination is not None and
             self.xposition == self.xdestination and
             self.yposition == self.ydestination
         ):
-            # self.unload_supply() # We will trigger this manually in Streamlit
             pass
