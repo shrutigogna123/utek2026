@@ -130,7 +130,11 @@ We used file to help visualize the program in a d20x20 bitmap that can runs in t
     - Distances of drones to each room needs to be calculated and updated
     - Modifying the quantity of a resource after a completed request
 - In future: handle concurrent requests and allow for instantaneous database update
- 
+
+---
+## Demo Video
+https://drive.google.com/file/d/1uY-kAuAGJa3CmcxD0FTGDcBVLhSfwPzO/view?usp=sharing
+
 ---
 ## References
 
