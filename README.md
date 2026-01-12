@@ -26,6 +26,7 @@ simulation of an indoor drone fleet. It uses autonomous agents to deliver suppli
 * **Frontend:** Streamlit (Python)
 * **Visualization:** Plotly (Interactive Heatmaps & Scatter Plots)
 * **Logic:** NumPy (Grid Management), Heapq (Pathfinding Algorithm)
+* **Database**: PostgreSQL, Flask, SQLAlchemy
 ---
 
 ## Project Structure
